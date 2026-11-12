@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="470" viewBox="0 0 1000 470" role="img" aria-labelledby="title description">
+  <title id="title">Coordinate mapping from drawing space to 3D</title>
+  <desc id="description">On the left, a 128 by 64 rectangle lies on the 2D X and Y axes. On the right, the same footprint is 4 by 2 units on the 3D X and Z axes at scale 32. Height extends upward on 3D Y. Offsets and scene transforms are omitted.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto">
+      <path d="m0 0 8 4-8 4Z" fill="#d4e0f1"/>
+    </marker>
+    <marker id="convert" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto">
+      <path d="m0 0 8 4-8 4Z" fill="#8eefda"/>
+    </marker>
+    <style>
+      text { font-family: sans-serif; fill: #edf3fc; font-size: 17px; }
+      .title { font-size: 28px; font-weight: bold; }
+      .heading { font-size: 21px; font-weight: bold; }
+      .note { font-size: 15px; fill: #b6c8de; }
+    </style>
+  </defs>
+  <rect width="1000" height="470" rx="16" fill="#152234"/>
+  <text x="28" y="44" class="title">One footprint, two coordinate systems</text>
+  <text x="28" y="73" class="note">Example at geometry_scale = 32, with zero origin/offsets and identity output transforms.</text>
+  <rect x="24" y="96" width="380" height="296" rx="12" fill="#1e3047"/>
+  <text x="46" y="130" class="heading">2D drawing</text>
+  <path d="M80 185h260M80 185v166" fill="none" stroke="#d4e0f1" stroke-width="2" marker-end="url(#arrow)"/>
+  <path d="M80 185h195v108H80Z" fill="#8da5f3" fill-opacity=".25" stroke="#8da5f3" stroke-width="3"/>
+  <circle cx="275" cy="293" r="6" fill="#8eefda"/>
+  <text x="329" y="174">+X</text>
+  <text x="96" y="354">+Y</text>
+  <text x="136" y="172">128 drawing units</text>
+  <text x="288" y="245">64</text>
+  <text x="196" y="321">(128, 64)</text>
+  <path d="M428 243h115" fill="none" stroke="#8eefda" stroke-width="3" marker-end="url(#convert)"/>
+  <text x="444" y="219">divide</text>
+  <text x="444" y="276">by 32</text>
+  <rect x="568" y="96" width="408" height="296" rx="12" fill="#1e3047"/>
+  <text x="590" y="130" class="heading">3D geometry</text>
+  <path d="M700 270 930 312M700 270 600 344M700 270V156" fill="none" stroke="#d4e0f1" stroke-width="2" marker-end="url(#arrow)"/>
+  <path d="m700 270 190 35-65 48-190-35Z" fill="#8da5f3" fill-opacity=".3" stroke="#8da5f3" stroke-width="2"/>
+  <path d="m700 190 190 35-65 48-190-35Z" fill="#8da5f3" fill-opacity=".65" stroke="#b7c8ff" stroke-width="2"/>
+  <path d="M700 270v-80m190 115v-80m-65 128v-80m-190 45v-80" fill="none" stroke="#8da5f3" stroke-width="2" stroke-dasharray="5 4"/>
+  <circle cx="825" cy="353" r="6" fill="#8eefda"/>
+  <text x="934" y="328">+X</text>
+  <text x="588" y="370">+Z</text>
+  <text x="713" y="166">+Y = height</text>
+  <text x="700" y="377">4 units</text>
+  <text x="590" y="303">2 units</text>
+  <text x="839" y="377">X=4, Z=2</text>
+  <text x="30" y="423">2D X -&gt; 3D X     |     2D Y -&gt; 3D Z     |     Geometry height -&gt; 3D Y</text>
+  <text x="30" y="450" class="note">Only drawing-space quantities are divided by scale. Height and slope width are already in 3D units.</text>
+</svg>

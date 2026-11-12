@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="700" viewBox="0 0 1000 700" role="img" aria-labelledby="title description">
+  <title id="title">Slope edges, corner factors, curves, and flipping</title>
+  <desc id="description">Four side-profile panels compare the two ramp edges. The standard ramp has both low corners at zero. Independent factors raise each edge's low endpoint by a different amount. Curved profiles retain those endpoint heights. A flipped ramp starts high and ends at the raised low corners, with its flat reference face at the high level.</desc>
+  <style>
+    text { font-family: sans-serif; fill: #edf3fc; font-size: 16px; }
+    .title { font-size: 28px; font-weight: bold; }
+    .heading { font-size: 20px; font-weight: bold; }
+    .note { font-size: 14px; fill: #b6c8de; }
+    .axis { fill: none; stroke: #536981; stroke-width: 1.5; }
+    .left { fill: none; stroke: #8eefda; stroke-width: 4; }
+    .right { fill: none; stroke: #f0aedb; stroke-width: 3; stroke-dasharray: 8 5; }
+    .flat { fill: none; stroke: #e0c989; stroke-width: 2; stroke-dasharray: 4 5; }
+  </style>
+  <rect width="1000" height="700" rx="16" fill="#152234"/>
+  <text x="28" y="43" class="title">Low corners rise independently</text>
+  <text x="28" y="70" class="note">Overlaid longitudinal edge profiles, not perspective views. H = geometry_height.</text>
+  <g transform="translate(24 92)">
+    <rect width="466" height="252" rx="12" fill="#1e3047"/>
+    <text x="18" y="30" class="heading">1. Standard ramp</text>
+    <text x="18" y="53" class="note">Left = 0.0, Right = 0.0; straight</text>
+    <path d="M62 75v122h338" class="axis"/>
+    <path d="M62 197h338" class="flat"/>
+    <path d="m62 197 338-122" class="left"/>
+    <path d="m62 197 338-122" class="right"/>
+    <text x="29" y="80">H</text><text x="29" y="202">0</text>
+    <text x="62" y="222">Start / low</text><text x="305" y="222">End / high</text>
+    <text x="65" y="244" class="note">Both edge profiles coincide.</text>
+  </g>
+  <g transform="translate(510 92)">
+    <rect width="466" height="252" rx="12" fill="#1e3047"/>
+    <text x="18" y="30" class="heading">2. Raised low corners</text>
+    <text x="18" y="53" class="note">Left = 0.65, Right = 0.15; straight</text>
+    <path d="M62 75v122h338" class="axis"/>
+    <path d="M62 197h338" class="flat"/>
+    <path d="m62 118 338-43" class="left"/>
+    <path d="m62 179 338-104" class="right"/>
+    <circle cx="62" cy="118" r="5" fill="#8eefda"/>
+    <circle cx="62" cy="179" r="5" fill="#f0aedb"/>
+    <text x="29" y="80">H</text><text x="29" y="202">0</text>
+    <text x="73" y="110" class="note">0.65H</text><text x="100" y="190" class="note">0.15H</text>
+    <text x="62" y="222">Start / raised</text><text x="305" y="222">End / high</text>
+    <text x="65" y="244" class="note">High endpoints remain fixed at H.</text>
+  </g>
+  <g transform="translate(24 360)">
+    <rect width="466" height="252" rx="12" fill="#1e3047"/>
+    <text x="18" y="30" class="heading">3. Raised corners + curve</text>
+    <text x="18" y="53" class="note">Same factors; powered progress t cubed</text>
+    <path d="M62 75v122h338" class="axis"/>
+    <path d="M62 197h338" class="flat"/>
+    <path d="M62 118C175 118 287 118 400 75" class="left"/>
+    <path d="M62 179C175 179 287 179 400 75" class="right"/>
+    <text x="29" y="80">H</text><text x="29" y="202">0</text>
+    <text x="62" y="222">Start / raised</text><text x="305" y="222">End / high</text>
+    <text x="65" y="244" class="note">Each edge keeps its own low height.</text>
+  </g>
+  <g transform="translate(510 360)">
+    <rect width="466" height="252" rx="12" fill="#1e3047"/>
+    <text x="18" y="30" class="heading">4. Flipped ramp + curve</text>
+    <text x="18" y="53" class="note">Left = 0.65, Right = 0.15; flat face at H</text>
+    <path d="M62 75v122h338" class="axis"/>
+    <path d="M62 75h338" class="flat"/>
+    <path d="M62 75C175 75 287 75 400 118" class="left"/>
+    <path d="M62 75C175 75 287 75 400 179" class="right"/>
+    <circle cx="400" cy="118" r="5" fill="#8eefda"/>
+    <circle cx="400" cy="179" r="5" fill="#f0aedb"/>
+    <text x="29" y="80">H</text><text x="29" y="202">0</text>
+    <text x="62" y="222">Start / high</text><text x="289" y="222">End / raised</text>
+    <text x="65" y="244" class="note">Volume lies above the descending profile.</text>
+  </g>
+  <path d="M32 642h40" class="left"/><text x="82" y="648">Left edge</text>
+  <path d="M250 642h40" class="right"/><text x="300" y="648">Right edge</text>
+  <path d="M478 642h40" class="flat"/><text x="528" y="648">Flat reference face</text>
+  <text x="28" y="682" class="note">Point reversal changes the directed start/end before edge assignment. Corner factors always raise the low endpoints.</text>
+</svg>

@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="900" viewBox="0 0 1040 900" role="img" aria-labelledby="title description">
+  <title id="title">Draw in 2D, build in 3D</title>
+  <desc id="description">Four rows compare authoring points with generated shapes. A polygon becomes an extruded block or a flat floor. A two-point line becomes a ramp with width. A polyline becomes a zero-thickness wall.</desc>
+  <defs>
+    <pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M24 0H0V24" fill="none" stroke="#304158" stroke-width="1"/>
+    </pattern>
+    <marker id="arrow" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto">
+      <path d="m0 0 8 4-8 4Z" fill="#8eefda"/>
+    </marker>
+    <style>
+      text { font-family: sans-serif; fill: #edf3fc; }
+      .title { font-size: 30px; font-weight: bold; }
+      .heading { font-size: 20px; font-weight: bold; }
+      .label { font-size: 17px; }
+      .note { font-size: 15px; fill: #b6c8de; }
+      .shape { stroke: #b7c8ff; stroke-width: 2; stroke-linejoin: round; }
+      .outline { fill: #8da5f3; fill-opacity: .18; stroke: #8da5f3; stroke-width: 3; stroke-linejoin: round; }
+      .point { fill: #8eefda; stroke: #152234; stroke-width: 2; }
+    </style>
+  </defs>
+  <rect width="1040" height="900" rx="18" fill="#152234"/>
+  <text x="32" y="46" class="title">Draw in 2D. Build in 3D.</text>
+  <text x="32" y="76" class="note">Concept diagrams, not editor screenshots. Output faces shown for illustration.</text>
+  <text x="150" y="114" class="heading">AUTHOR POINTS</text>
+  <text x="640" y="114" class="heading">GENERATE GEOMETRY</text>
+  <g transform="translate(24 132)">
+    <rect width="992" height="170" rx="12" fill="#1e3047"/>
+    <text x="20" y="31" class="heading">STPolygon</text>
+    <rect x="150" y="42" width="230" height="108" fill="url(#grid)" rx="6"/>
+    <path d="M190 65h142v60H190Z" class="outline"/>
+    <g class="point">
+      <circle cx="190" cy="65" r="5"/><circle cx="332" cy="65" r="5"/>
+      <circle cx="332" cy="125" r="5"/><circle cx="190" cy="125" r="5"/>
+    </g>
+    <path d="M412 93h135" fill="none" stroke="#8eefda" stroke-width="3" marker-end="url(#arrow)"/>
+    <text x="434" y="76" class="note">+ height</text>
+    <path d="m640 88 85-41 145 38v40l-85 30-145-33Z" fill="#354a75" class="shape"/>
+    <path d="m640 88 145 35 85-38-145-38Z" fill="#8da5f3" class="shape"/>
+    <path d="M785 123v32" fill="none" class="shape"/>
+    <text x="888" y="90" class="label">Top</text>
+    <text x="888" y="120" class="label">Sides</text>
+  </g>
+  <g transform="translate(24 316)">
+    <rect width="992" height="170" rx="12" fill="#1e3047"/>
+    <text x="20" y="31" class="heading">STFloor</text>
+    <rect x="150" y="42" width="230" height="108" fill="url(#grid)" rx="6"/>
+    <path d="M190 65h142v60H190Z" class="outline"/>
+    <g class="point">
+      <circle cx="190" cy="65" r="5"/><circle cx="332" cy="65" r="5"/>
+      <circle cx="332" cy="125" r="5"/><circle cx="190" cy="125" r="5"/>
+    </g>
+    <path d="M412 93h135" fill="none" stroke="#8eefda" stroke-width="3" marker-end="url(#arrow)"/>
+    <text x="428" y="76" class="note">map to X/Z</text>
+    <path d="m640 96 85-41 145 38-85 41Z" fill="#8da5f3" class="shape"/>
+    <path d="m677 78 145 39m-70-55-85 41" fill="none" stroke="#d4ddff" stroke-width="1.5"/>
+    <text x="885" y="83" class="label">Flat</text>
+    <text x="885" y="109" class="note">No thickness</text>
+    <text x="640" y="153" class="note">Top and bottom share one plane.</text>
+  </g>
+  <g transform="translate(24 500)">
+    <rect width="992" height="170" rx="12" fill="#1e3047"/>
+    <text x="20" y="31" class="heading">STSlope</text>
+    <rect x="150" y="42" width="230" height="108" fill="url(#grid)" rx="6"/>
+    <path d="M190 105h142" fill="none" stroke="#8da5f3" stroke-width="4"/>
+    <g class="point"><circle cx="190" cy="105" r="6"/><circle cx="332" cy="105" r="6"/></g>
+    <text x="176" y="81" class="note">Start</text>
+    <text x="318" y="81" class="note">End</text>
+    <path d="M412 93h135" fill="none" stroke="#8eefda" stroke-width="3" marker-end="url(#arrow)"/>
+    <text x="424" y="66" class="note">+ width</text>
+    <text x="424" y="84" class="note">+ profile</text>
+    <path d="m640 108 145-85 85 30v60l-145 25Z" fill="#354a75" class="shape"/>
+    <path d="m640 108 85 30 145-85-85-30Z" fill="#8da5f3" class="shape"/>
+    <text x="882" y="67" class="label">High end</text>
+    <text x="640" y="157" class="note">Two points set length and direction.</text>
+  </g>
+  <g transform="translate(24 684)">
+    <rect width="992" height="170" rx="12" fill="#1e3047"/>
+    <text x="20" y="31" class="heading">STWall</text>
+    <rect x="150" y="42" width="230" height="108" fill="url(#grid)" rx="6"/>
+    <path d="m185 123 78-52 76 41" fill="none" stroke="#8da5f3" stroke-width="4" stroke-linejoin="round"/>
+    <g class="point">
+      <circle cx="185" cy="123" r="6"/><circle cx="263" cy="71" r="6"/><circle cx="339" cy="112" r="6"/>
+    </g>
+    <path d="M412 93h135" fill="none" stroke="#8eefda" stroke-width="3" marker-end="url(#arrow)"/>
+    <text x="434" y="76" class="note">+ height</text>
+    <path d="m640 130 95-42V35l-95 42Z" fill="#8da5f3" class="shape"/>
+    <path d="m735 88 135 38V73L735 35Z" fill="#5c79bd" class="shape"/>
+    <text x="884" y="88" class="label">Vertical</text>
+    <text x="884" y="114" class="note">No thickness</text>
+    <text x="640" y="155" class="note">Each line segment becomes a wall quad.</text>
+  </g>
+  <text x="32" y="884" class="note">2D X/Y become 3D X/Z. Heights and slope width are supplied in 3D units.</text>
+</svg>
