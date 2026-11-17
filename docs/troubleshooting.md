@@ -107,10 +107,34 @@ inside the editor. Rebuild after changing either setting.
 Generated collision uses the emitted surfaces and a static concave mesh; it is
 not a dynamic/convex solid.
 
-The current builder does not give collision child nodes scene ownership.
-Rebuild at runtime rather than assuming saved editor collision is present.
+Generated `StaticBody3D`/`CollisionShape3D` nodes now follow the same ownership
+rule as the generated mesh/timer nodes: they are only given scene ownership
+(so they show up and survive a scene save/reload) when `build_nodes_in_editor`
+is also enabled on the shaper, same as the mesh node. With both
+`collision_enabled_in_editor` and `build_nodes_in_editor` on, rebuild once and
+the collision nodes should appear in the Scene tree and persist across reloads.
+With `build_nodes_in_editor` off, collision (like the mesh/timer nodes) is
+still generated and works in the running editor/game, but is not saved.
 Rebuilding with collision disabled removes generated direct static bodies.
 Hiding a mesh does not disable physics.
+
+### The editor freezes while saving a scene with editor collision
+
+If the editor becomes unresponsive while saving a scene that has many shapers
+with `collision_enabled_in_editor` and `build_nodes_in_editor` on, it is likely
+because each enabled shaper now owns its own concave trimesh collision shape,
+and saving must serialize/process all of that geometry at once. Before saving:
+
+- Stop any `AUTOMATIC_EDITOR_ONLY`/`AUTOMATIC_ALWAYS` rebuild timers (switch to
+  `MANUAL`) so collision is not being rebuilt while the save is in progress.
+- Turn off `collision_enabled_in_editor` on shapers where editor-time collision
+  isn't actually needed, keeping it enabled only where you are actively testing
+  physics in the editor.
+- Reduce curve/preset detail or shape count while iterating, and only enable
+  broad editor collision right before you need it.
+
+This is a known cost of owned, saved editor collision, not a sign of corrupted
+data; reducing the amount of simultaneously-owned collision geometry avoids it.
 
 ## One edit changes several shapes
 
@@ -139,7 +163,11 @@ when the added geometry is not needed. Disable unused surface groups and inward
 faces, and avoid generating editor collision unless useful.
 
 Every build regenerates surfaces and replaces collision; it is not an
-incremental vertex update or a background geometry job.
+incremental vertex update or a background geometry job. Owned editor collision
+(`build_nodes_in_editor` + `collision_enabled_in_editor` both on) adds scene
+save/serialization cost on top of the rebuild cost, scaling with how many
+shapers have it enabled at once; see "The editor freezes while saving a scene
+with editor collision" above.
 
 ## Imports, UIDs, or custom icons are missing
 

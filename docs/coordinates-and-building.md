@@ -90,7 +90,7 @@ All four shaper nodes have these properties:
 | `build_on_ready` | `DISABLED` | Startup policy for a standalone shaper |
 | `build_mode` | `MANUAL` | Whether builds maintain a repeating timer |
 | `build_automatic_interval` | `0.5` seconds | Timer period; minimum enforced interval is `0.001` |
-| `build_nodes_in_editor` | `false` | Gives generated mesh/timer nodes edited-scene ownership |
+| `build_nodes_in_editor` | `false` | Gives generated mesh/timer/collision nodes edited-scene ownership |
 | `build_nodes_deferred` | `true` | Defers output-node addition and owner assignment |
 
 `ShaperTech.BuildOnReadyType`:

@@ -384,7 +384,9 @@ func _update_collision() -> void:
 		_mesh,
 		data.collision_enabled and (not _is_editor or data.collision_enabled_in_editor),
 		data.collision_layer,
-		data.collision_mask
+		data.collision_mask,
+		build_nodes_in_editor,
+		build_nodes_deferred
 		)
 
 

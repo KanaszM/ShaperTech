@@ -81,7 +81,9 @@ static func update_collision(
 	origin: MeshInstance3D,
 	enabled: bool,
 	layer_value: int,
-	mask_value: int
+	mask_value: int,
+	save_in_editor: bool,
+	deferred: bool,
 	) -> void:
 		if not is_instance_valid(origin):
 			return
@@ -100,8 +102,35 @@ static func update_collision(
 		collision_body.collision_layer = layer_value
 		collision_body.collision_mask = mask_value
 		collision_shape.shape = origin.mesh.create_trimesh_shape()
-		origin.add_child(collision_body)
 		collision_body.add_child(collision_shape)
+		add_generated_collision_node(collision_body, collision_shape, origin, save_in_editor, deferred)
+
+
+static func add_generated_collision_node(
+	collision_body: StaticBody3D,
+	collision_shape: CollisionShape3D,
+	parent: Node,
+	save_in_editor: bool,
+	deferred: bool,
+	) -> void:
+		if deferred:
+			add_generated_collision_node.call_deferred(
+				collision_body, collision_shape, parent, save_in_editor, false
+				)
+			return
+		
+		if (
+			not is_instance_valid(collision_body) or not is_instance_valid(parent)
+			or collision_body.is_queued_for_deletion() or parent.is_queued_for_deletion()
+			):
+				return
+		
+		parent.add_child(collision_body)
+		
+		if save_in_editor and Engine.is_editor_hint():
+			var scene_root: Node = parent.get_tree().edited_scene_root
+			collision_body.owner = scene_root
+			collision_shape.owner = scene_root
 
 
 static func update_mesh_node(

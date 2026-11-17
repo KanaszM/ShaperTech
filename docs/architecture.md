@@ -85,7 +85,7 @@ simpler interface for normal usage.
 | --- | --- |
 | Ancestry | `has_container_ancestor`, `get_container_height_offset` |
 | Origin | `get_parent_origin` |
-| Generated nodes | `add_generated_node`, `update_mesh_node`, `update_timer_node` |
+| Generated nodes | `add_generated_node`, `add_generated_collision_node`, `update_mesh_node`, `update_timer_node` |
 | Collision | `update_collision` |
 | Materials/winding | `get_material`, `get_reverse_faces`, `get_polygon_reverse_faces` |
 | UVs | `get_uv`, `get_rotated_uv`, `rotate_uv` |
@@ -97,7 +97,10 @@ simpler interface for normal usage.
 Generated node helpers look for matching `shaper` references under the selected
 parent when the cached reference is invalid. The timer connects to the build
 method named by `ShaperTech.METHOD_BUILD`. Deferred node insertion and owner
-assignment are scheduled together.
+assignment are scheduled together. Generated collision nodes (`StaticBody3D`
+and `CollisionShape3D`) follow the same ownership rule as the mesh/timer nodes:
+they are only given scene ownership when the shaper's `build_nodes_in_editor`
+is enabled, so they show up and persist alongside the mesh.
 
 These helpers are not a scene-wide registry. They do not migrate output when
 a custom parent changes or remove external output when its authoring node is

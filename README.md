@@ -41,6 +41,7 @@ Use an `STContainer` to build several shapers together.
 | [Scripting](docs/scripting.md) | Runtime construction, resource sharing, and public methods |
 | [Troubleshooting](docs/troubleshooting.md) | Missing geometry, placement, textures, and performance |
 | [Architecture](docs/architecture.md) | Class responsibilities and the mesh-building pipeline |
+| [Changelog](docs/CHANGELOG.md) | Version history |
 
 The illustrations are conceptual diagrams, not editor screenshots. ShaperTech
 does not require an editor plugin, a project autoload, or third-party packages.
