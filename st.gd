@@ -12,7 +12,6 @@ enum MaterialReverseFacesMode {DISABLED, ENABLED, AUTOMATIC}
 #region Constants
 const DEFAULT_MATERIAL_SOLID: StandardMaterial3D = preload("uid://vde58ckktsu5")
 const DEFAULT_MATERIAL_TRANSPARENT: StandardMaterial3D = preload("uid://c6ukoruhpitps")
-const DEFAULT_TEXTURE: CompressedTexture2D = preload("uid://bfrh1yynkwyt2")
 const DEFAULT_GEOMETRY_SCALE: float = 32.0
 const DEFAULT_BUILD_AUTOMATIC_INTERVAL: float = 0.5
 const DEFAULT_COLLISION_LAYER: int = 1
